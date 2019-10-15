@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bomb.duapp.mapper.OrderMapper">
+
+	<select id="queryOrdersByUserId" resultType="org.bomb.duapp.entity.OrderInfo">
+        select
+            t.id as id,
+            t.user_id as userId,
+            t.order_id as orderId,
+            t.user_name as userName
+        from t_order t
+        where t.user_id=#{userId}
+        <if test="index != null and pageSize != null">
+            limit ${index}, ${pageSize}
+        </if>
+	</select>
+
+    <select id="queryOrdersByOrderId" resultType="org.bomb.duapp.entity.OrderInfo">
+        select
+        t.id as id,
+        t.user_id as userId,
+        t.order_id as orderId,
+        t.user_name as userName
+        from t_order t
+        where t.order_id=#{orderId}
+        <if test="index != null and pageSize != null">
+            limit ${index}, ${pageSize}
+        </if>
+    </select>
+
+    <select id="queryOrdersByMore" resultType="org.bomb.duapp.entity.OrderInfo">
+        select
+        t.id as id,
+        t.user_id as userId,
+        t.order_id as orderId,
+        t.user_name as userName
+        from t_order t
+        where 1=1
+        <if test="userId != null">and t.user_id >= #{userId}</if>
+        <if test="orderId != null">and t.order_id >= #{orderId}</if>
+    </select>
+
+    <select id="queryOrderInfo" parameterType="org.bomb.duapp.query.OrderInfoQuery" resultType="org.bomb.duapp.entity.OrderInfo">
+        select
+            t.id as id,
+            t.user_id as userId,
+            t.order_id as orderId,
+            t.user_name as userName
+        from t_order t
+        where 1=1
+        <if test="userId != null">and t.user_id = #{userId}</if>
+        <if test="orderId != null">and t.order_id = #{orderId}</if>
+        <if test="userName != null">and t.user_name = #{userName}</if>
+        <if test="sql_sort != null"> ${sql_sort} </if>
+        <if test="index != null and pageSize != null">
+            limit ${index}, ${pageSize}
+        </if>
+	</select>
+
+    <insert id="addOrder" parameterType="org.bomb.duapp.entity.OrderInfo">
+	  insert into t_order(
+          user_id,
+          order_id,
+          user_name
+	  )
+	  values
+	  (
+          #{userId},
+          #{orderId},
+          #{userName}
+	  )
+	</insert>
+
+    <update id="updateOrder" parameterType="org.bomb.duapp.entity.OrderInfo">
+        update t_order
+        <set>
+            <if test="userName != null"> user_name = #{userName}</if>
+        </set>
+        where user_id = #{userId} and order_id = #{orderId}
+    </update>
+
+    <delete id="delete">
+        delete from t_order t
+        where 1=1
+        <if test="userId != null">and t.user_id = #{userId}</if>
+        <if test="orderId != null">and t.order_id = #{orderId}</if>
+    </delete>
+
+</mapper>
