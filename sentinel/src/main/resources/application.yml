@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+project:
+  name: product-sentinel-demo
+
+spring:
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8866

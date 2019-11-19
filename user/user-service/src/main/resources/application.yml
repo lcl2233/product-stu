@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: user
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: user
+        tags: version=1.0
+        health-check-interval: 15s
+        health-check-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator/health
+    sentinel:
+      transport:
+        dashboard: localhost:8866
+
+management:
+  endpoint:
+    health:
+      show-details: always

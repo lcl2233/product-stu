@@ -15,6 +15,11 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>sharding-db</module>
+        <module>sentinel</module>
+        <module>user</module>
+        <module>product</module>
+        <module>mq</module>
+        <module>gateway</module>
     </modules>
 
     <properties>
@@ -30,7 +35,75 @@
         <jasypt-spring-boot-version>1.14</jasypt-spring-boot-version>
         <fastjson-version>1.2.28</fastjson-version>
         <common-lang3-version>3.8</common-lang3-version>
+
+        <product-version>1.0-SNAPSHOT</product-version>
+        <spring-boot-version>2.1.9.RELEASE</spring-boot-version>
+        <alibaba-cloud>2.1.0.RELEASE</alibaba-cloud>
+        <cloud-openfeign-version>2.0.1.RELEASE</cloud-openfeign-version>
+        <cloud-consul-version>2.1.3.RELEASE</cloud-consul-version>
+        <cloud-gateway-version>2.1.3.RELEASE</cloud-gateway-version>
+
+        <rocketmq-spring-boot-starter-version>2.0.3</rocketmq-spring-boot-starter-version>
+        <rocketmq-client-version>4.5.1</rocketmq-client-version>
+
+        <redisson-version>3.11.5</redisson-version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.bomb.duapp</groupId>
+                <artifactId>user-api</artifactId>
+                <version>${product-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.bomb.duapp</groupId>
+                <artifactId>product-api</artifactId>
+                <version>${product-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+                <version>${alibaba-cloud}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${cloud-openfeign-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+                <version>${cloud-consul-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-gateway</artifactId>
+                <version>${cloud-gateway-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq-spring-boot-starter-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocketmq-client-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redisson-version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

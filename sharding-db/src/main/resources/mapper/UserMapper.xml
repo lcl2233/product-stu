@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.bomb.duapp.mapper.UserMapper">
+<mapper namespace="org.bomb.duapp.sharding.mapper.UserMapper">
 
-	<select id="getUsers" parameterType="org.bomb.duapp.entity.User"
-			resultType="org.bomb.duapp.entity.User">
+	<select id="getUsers" parameterType="org.bomb.duapp.sharding.entity.User"
+			resultType="org.bomb.duapp.sharding.entity.User">
         select *
         from user t
         where 1 = 1
@@ -14,14 +14,14 @@
         <if test="sex != null">and t.sex = #{sex}</if>
 	</select>
 
-    <select id="info" parameterType="org.bomb.duapp.entity.User"
-            resultType="org.bomb.duapp.entity.User">
+    <select id="info" parameterType="org.bomb.duapp.sharding.entity.User"
+            resultType="org.bomb.duapp.sharding.entity.User">
         select *
         from user t
         where t.id=#{id}
 	</select>
 
-    <insert id="addUser" parameterType="org.bomb.duapp.entity.User" useGeneratedKeys="true" keyColumn="id">
+    <insert id="addUser" parameterType="org.bomb.duapp.sharding.entity.User" useGeneratedKeys="true" keyColumn="id">
 	  insert into user(
           `username`,
           password,

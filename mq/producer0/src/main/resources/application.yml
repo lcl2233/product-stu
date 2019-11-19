@@ -1,0 +1,13 @@
+server:
+  port: 8094
+
+product:
+  name: producer0
+
+rocketmq:
+  name-server: localhost:9876
+  producer:
+    group: producer-group0
+    sendMessageTimeout: 300000
+
+topic0: topic0

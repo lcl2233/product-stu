@@ -1,7 +1,7 @@
 package org.bomb.duapp;
 
-import org.bomb.duapp.entity.OrderInfo;
-import org.bomb.duapp.service.OrderService;
+import org.bomb.duapp.sharding.entity.OrderInfo;
+import org.bomb.duapp.sharding.service.OrderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.bomb.duapp.mapper.OrderMapper">
+<mapper namespace="org.bomb.duapp.sharding.mapper.OrderMapper">
 
-	<select id="queryOrdersByUserId" resultType="org.bomb.duapp.entity.OrderInfo">
+	<select id="queryOrdersByUserId" resultType="org.bomb.duapp.sharding.entity.OrderInfo">
         select
             t.id as id,
             t.user_id as userId,
@@ -16,7 +16,7 @@
         </if>
 	</select>
 
-    <select id="queryOrdersByOrderId" resultType="org.bomb.duapp.entity.OrderInfo">
+    <select id="queryOrdersByOrderId" resultType="org.bomb.duapp.sharding.entity.OrderInfo">
         select
         t.id as id,
         t.user_id as userId,
@@ -29,7 +29,7 @@
         </if>
     </select>
 
-    <select id="queryOrdersByMore" resultType="org.bomb.duapp.entity.OrderInfo">
+    <select id="queryOrdersByMore" resultType="org.bomb.duapp.sharding.entity.OrderInfo">
         select
         t.id as id,
         t.user_id as userId,
@@ -41,7 +41,7 @@
         <if test="orderId != null">and t.order_id >= #{orderId}</if>
     </select>
 
-    <select id="queryOrderInfo" parameterType="org.bomb.duapp.query.OrderInfoQuery" resultType="org.bomb.duapp.entity.OrderInfo">
+    <select id="queryOrderInfo" parameterType="org.bomb.duapp.sharding.query.OrderInfoQuery" resultType="org.bomb.duapp.sharding.entity.OrderInfo">
         select
             t.id as id,
             t.user_id as userId,
@@ -58,7 +58,7 @@
         </if>
 	</select>
 
-    <insert id="addOrder" parameterType="org.bomb.duapp.entity.OrderInfo">
+    <insert id="addOrder" parameterType="org.bomb.duapp.sharding.entity.OrderInfo">
 	  insert into t_order(
           user_id,
           order_id,
@@ -72,7 +72,7 @@
 	  )
 	</insert>
 
-    <update id="updateOrder" parameterType="org.bomb.duapp.entity.OrderInfo">
+    <update id="updateOrder" parameterType="org.bomb.duapp.sharding.entity.OrderInfo">
         update t_order
         <set>
             <if test="userName != null"> user_name = #{userName}</if>
