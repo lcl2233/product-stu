@@ -10,6 +10,7 @@ import org.redisson.config.Config;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -59,22 +60,16 @@ public class Test {
          *  有序集合先根据自定义比较器比较，没有则根据具体类比较器
          * */
 
-        System.out.println(Long.MAX_VALUE);
+        List<Long> ids = new ArrayList<>();
+        ids.add(1L);
+        ids.add(2L);
+        ids.add(3L);
+        ids.add(3L);
+        ids.add(4L);
 
-        long l = Long.MAX_VALUE;
-        double d1 = l;
-        BigDecimal b1 = new BigDecimal(l);
-        System.out.println(d1);
-        System.out.println(b1);
+        ids = new ArrayList<>(new LinkedHashSet<>(ids));
+        System.out.println(Lists.newArrayList(ids.get(0),ids.get(1),ids.get(2),ids.get(3)));
 
-        long l1 = Long.MAX_VALUE - 1;
-        double d2 = l1;
-        BigDecimal b2 = new BigDecimal(l1);
-        System.out.println(d2);
-        System.out.println(b2);
-
-        Integer a = Integer.MAX_VALUE;
-        System.out.println(a);
     }
 
 }

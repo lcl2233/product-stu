@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+project:
+  name: mp-demo
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://rm-uf62vvbo25h3377m7.mysql.rds.aliyuncs.com:3306/du_product?useUnicode=true&useSSL=false&characterEncoding=utf8
+    username: du_java
+    password: W0gefGMnHK2OOiYq
+
+## mybatis配置
+mybatis:
+  type-aliases-package: org.bomb.duapp.mp.infrastructure.integration.db.model
+  mapper-locations: classpath:org/bomb/duapp/mp/infrastructure/integration/db/mapper/xml/*.xml
+
+# Logger Config
+logging:
+  level:
+    org.bomb.duapp.mp.generator: debug
+

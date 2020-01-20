@@ -4,6 +4,13 @@ server:
 product:
   name: producer0
 
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/?useUnicode=true&useSSL=false&characterEncoding=utf8
+    username: du_java
+    password: W0gefGMnHK2OOiYq
+
 rocketmq:
   name-server: localhost:9876
   producer:

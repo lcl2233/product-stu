@@ -18,6 +18,10 @@ spring:
         dashboard: localhost:8866
 
 management:
+  endpoints:
+    web:
+      exposure:
+        include: breathe,health,info,consul
   endpoint:
     health:
       show-details: always
