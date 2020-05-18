@@ -1,5 +1,3 @@
-package org.bomb.duapp.mp;
-
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
@@ -26,15 +24,15 @@ public class CodeGenerator {
     private static String packagePath ;
 
     static {
-        projectPath = System.getProperty("user.dir") + "/commodity-infrastructure/";
+        projectPath = System.getProperty("user.dir") + "/mybatis-plus/";
         author = "bomb";
 
-        jdbcUrl = "jdbc:mysql://rm-uf62vvbo25h3377m7.mysql.rds.aliyuncs.com:3306/du_product?useUnicode=true&useSSL=false&characterEncoding=utf8";
+        jdbcUrl = "jdbc:mysql://127.0.0.1:3306/db0?useUnicode=true&useSSL=false&characterEncoding=utf8";
         jdbcDriver = "com.mysql.jdbc.Driver";
-        userName = "du_java";
-        password = "W0gefGMnHK2OOiYq";
+        userName = "root";
+        password = "123456";
 
-        packagePath = "com.shizhuang.duapp.commodity.infrastructure.integration.db";
+        packagePath = "org.bomb.duapp.mp";
     }
 
     public static void main(String[]args) {
@@ -45,15 +43,10 @@ public class CodeGenerator {
         GlobalConfig gc = new GlobalConfig();
         gc.setOutputDir(projectPath + "src/main/java/");
         gc.setAuthor(author);
-        gc.setFileOverride(true); //覆盖原有文件
-        gc.setOpen(true);
+        gc.setFileOverride(true);
         gc.setBaseResultMap(true);
         gc.setBaseColumnList(true);
         gc.setDateType(DateType.ONLY_DATE);
-        gc.setEntityName("%sPO");
-        gc.setServiceName("%sDao");
-        gc.setServiceImplName("%sDaoImpl");
-        gc.setMapperName("%sMapper");
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -67,10 +60,10 @@ public class CodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setEntity("model");
+        pc.setEntity("entity");
         pc.setMapper("mapper");
-        pc.setService("dao");
-        pc.setServiceImpl("dao.impl");
+        pc.setService("service");
+        pc.setServiceImpl("service.impl");
         pc.setParent(packagePath);
         mpg.setPackageInfo(pc);
 
@@ -78,12 +71,9 @@ public class CodeGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setEntityLombokModel(true);
-        strategy.setEntityBuilderModel(true);
         strategy.setRestControllerStyle(true);
         strategy.setControllerMappingHyphenStyle(true);
-        strategy.setLogicDeleteFieldName("is_del");
-//        strategy.setInclude("commodity_size_template_detail"); 表名
+        strategy.setInclude("opus_out_amount");
         mpg.setStrategy(strategy);
 
         mpg.execute();

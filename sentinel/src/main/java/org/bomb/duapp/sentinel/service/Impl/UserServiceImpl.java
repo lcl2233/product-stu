@@ -19,4 +19,9 @@ public class UserServiceImpl implements UserService {
         return "hello " + name;
     }
 
+    @Override
+    public String test() {
+        return "this is test sentinel";
+    }
+
 }

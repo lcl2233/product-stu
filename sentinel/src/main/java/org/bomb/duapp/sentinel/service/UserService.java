@@ -4,4 +4,6 @@ public interface UserService {
 
     String sayHello(String name);
 
+    String test();
+
 }

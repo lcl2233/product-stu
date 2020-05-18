@@ -1,23 +1,21 @@
 server:
   port: 8080
-
 project:
   name: mp-demo
 
 spring:
   datasource:
+    type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://rm-uf62vvbo25h3377m7.mysql.rds.aliyuncs.com:3306/du_product?useUnicode=true&useSSL=false&characterEncoding=utf8
-    username: du_java
-    password: W0gefGMnHK2OOiYq
+    url: jdbc:mysql://localhost:3306/db0?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
 
-## mybatis配置
-mybatis:
-  type-aliases-package: org.bomb.duapp.mp.infrastructure.integration.db.model
-  mapper-locations: classpath:org/bomb/duapp/mp/infrastructure/integration/db/mapper/xml/*.xml
+mybatis-plus:
+  typeAliasesPackage: org.bomb.duapp.mp.entity
+  mapperLocations: org/bomb/duapp/mp/mapper/xml/*.xml
 
-# Logger Config
 logging:
   level:
-    org.bomb.duapp.mp.generator: debug
+    org.bomb.duapp.mp: debug
 
